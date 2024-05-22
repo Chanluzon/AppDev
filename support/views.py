@@ -63,20 +63,22 @@ def view_ticket(request, ticket_id):
 
 
 def user_login(request):
-    if request.method == 'POST':
-        form = AuthenticationForm(request, data=request.POST)
-        if form.is_valid():
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
-            user = authenticate(username=username, password=password)
-            if user is not None:
-                login(request, user)
-                if user.has_perm('support.view_staff_status'):
-                    return redirect('dashboard')
-                else:
-                    return redirect('dashboard_user')
+    form = AuthenticationForm(request, data=request.POST or None)
+    if form.is_valid():
+        username = form.cleaned_data.get('username')
+        password = form.cleaned_data.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            if user.has_perm('support.view_staff_status'):
+                return redirect('dashboard')
+            else:
+                return redirect('dashboard_user')
+        else:
+            messages.error(request, 'Invalid username or password.')
     else:
-        form = AuthenticationForm()
+        if request.method == 'POST':
+            messages.error(request, 'Invalid form data.')
     return render(request, 'support/login.html', {'form': form})
 
 @login_required

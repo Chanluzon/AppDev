@@ -1,0 +1,195 @@
+.login-page-container {
+  width: 100%;
+  display: flex;
+  overflow: auto;
+  min-height: 100vh;
+  align-items: center;
+  flex-direction: column;
+}
+.login-page-login-page {
+  width: 100%;
+  height: 1080px;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  align-items: center;
+  flex-shrink: 0;
+  justify-content: center;
+  background-color: #ffffff;
+}
+.login-page-rectangle1 {
+  top: 0px;
+  left: 0px;
+  width: 1920px;
+  height: 1080px;
+  position: absolute;
+}
+.login-page-rectangle11 {
+  top: 0px;
+  left: 0px;
+  width: 1920px;
+  height: 1080px;
+  display: flex;
+  position: absolute;
+  box-shadow: 5px 5px 10px 0px #d4d4d4;
+  align-items: center;
+  border-color: var(--dl-color-theme-neutral-dark);
+  border-width: 1px;
+  border-radius: var(--dl-radius-radius-radius4);
+  animation-name: none;
+  animation-delay: 0s;
+  background-size: cover;
+  justify-content: center;
+  background-image: url("public/rectangle1423-se-2000w.png");
+  animation-duration: 300ms;
+  animation-direction: normal;
+  background-position: center;
+  animation-iteration-count: 1;
+  animation-timing-function: ease;
+}
+.login-page-passwordtextarea {
+  top: 464px;
+  right: 124px;
+  width: 653px;
+  height: 52px;
+  position: absolute;
+  align-self: center;
+  border-color: #000000;
+  background-color: #ffffff;
+}
+.login-page-passwordtextarea1 {
+  top: 613px;
+  right: 123px;
+  width: 653px;
+  height: 52px;
+  position: absolute;
+  align-self: center;
+  border-color: #000000;
+  background-color: #ffffff;
+}
+.login-page-button {
+  top: 735px;
+  left: 1364px;
+  width: 132px;
+  height: 46px;
+  position: absolute;
+  border-radius: 15px;
+}
+.login-page-text {
+  top: 0px;
+  left: 32px;
+  position: absolute;
+  font-size: 40px;
+  font-family: "Bebas Neue";
+  text-transform: uppercase;
+}
+.login-page-rectangle2 {
+  top: 0px;
+  left: 0px;
+  width: 1920px;
+  height: 140px;
+  position: absolute;
+}
+.login-page-image2 {
+  top: 23px;
+  left: 74px;
+  width: 236px;
+  height: 93px;
+  position: absolute;
+}
+.login-page-text04 {
+  top: 50px;
+  left: 1668px;
+  color: rgba(255, 255, 255, 1);
+  width: 72px;
+  height: auto;
+  position: absolute;
+  font-size: 40px;
+  font-style: Regular;
+  text-align: left;
+  font-family: Bebas Neue;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.login-page-text06 {
+  top: 50px;
+  left: 1463px;
+  color: rgba(255, 255, 255, 1);
+  width: 123px;
+  height: auto;
+  position: absolute;
+  font-size: 40px;
+  font-style: Regular;
+  text-align: left;
+  font-family: Bebas Neue;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.login-page-text08 {
+  top: 342px;
+  left: 235px;
+  color: rgba(255, 255, 255, 1);
+  width: 454px;
+  height: auto;
+  position: absolute;
+  font-size: 128px;
+  font-style: Regular;
+  text-align: center;
+  font-family: Bebas Neue;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.login-page-text10 {
+  top: 185px;
+  left: 1099px;
+  color: rgba(0, 0, 0, 1);
+  width: 241px;
+  height: auto;
+  position: absolute;
+  font-size: 96px;
+  font-style: Regular;
+  text-align: center;
+  font-family: Bebas Neue;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.login-page-text12 {
+  top: 556px;
+  left: 1110px;
+  color: rgba(0, 0, 0, 1);
+  width: 236px;
+  height: auto;
+  position: absolute;
+  font-size: 40px;
+  font-style: Regular;
+  text-align: center;
+  font-family: Bebas Neue;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.login-page-text14 {
+  top: 403px;
+  left: 1110px;
+  color: rgba(0, 0, 0, 1);
+  width: 236px;
+  height: auto;
+  position: absolute;
+  font-size: 40px;
+  font-style: Regular;
+  text-align: center;
+  font-family: Bebas Neue;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}

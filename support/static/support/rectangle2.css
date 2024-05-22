@@ -1,0 +1,9 @@
+.rectangle2-container {
+  display: flex;
+  position: relative;
+}
+.rectangle2-rectangle2 {
+  width: 1920px;
+  height: 140px;
+  position: relative;
+}
