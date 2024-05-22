@@ -1,0 +1,53 @@
+/* dashboard.css */
+
+body {
+    background-color: #000000;
+    color: #ffffff;
+  }
+  
+  .header {
+    background-color: #fdcc01;
+    padding: 20px;
+  }
+  
+  .header a {
+    color: #ffffff;
+  }
+  
+  .header input[type="text"] {
+    background-color: #ffffff;
+    color: #000000;
+  }
+  
+  .sidebar {
+    background-color: #fdcc01;
+    padding: 20px;
+  }
+  
+  .sidebar .tickets-button {
+    background-color: #ffffff;
+    color: #000000;
+  }
+  
+  .sidebar .tickets-list a {
+    color: #ffffff;
+  }
+  
+  .main-content {
+    background-color: #000000;
+    color: #ffffff;
+  }
+  
+  .main-content .tickets-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .main-content .tickets-table th, .main-content .tickets-table td {
+    border: 1px solid #ffffff;
+    padding: 10px;
+  }
+  
+  .main-content .tickets-table a {
+    color: #ffffff;
+  }

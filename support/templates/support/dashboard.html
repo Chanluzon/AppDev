@@ -1,0 +1,53 @@
+{% extends 'support/base.html' %}
+{% load static %}
+{% block content %}
+<div class="dashboard-container">
+    <header>
+        <link rel="stylesheet" type="text/css" href="{% static 'support/dashboard.css' %}">
+        <a href="{% url 'dashboard' %}">
+            <img src="{% static './img/logo.png' %}" alt="Wildcat Innovation Labs">
+        </a>
+        <input type="text" placeholder="Search ticket">
+    </header>
+    <div class="sidebar">
+        <div class="tickets-menu">
+            <button class="tickets-button">Tickets</button>
+            <ul class="tickets-list">
+                <li><a href="#">Open</a></li>
+                <li><a href="#">Unassigned</a></li>
+                <li><a href="#">Pending</a></li>
+                <li><a href="#">Resolved</a></li>
+                <li><a href="#">Closed</a></li>
+                <li><a href="#">Archived</a></li>
+                <li><a href="{% url 'assigned_to_me' %}">Assigned to me</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="main-content">
+        <table class="tickets-table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Ticket</th>
+                    <th>Assigned Admin</th> <!-- Add this header -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for ticket in tickets %}
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><a href="{% url 'view_ticket' ticket.id %}">{{ ticket.title }}</a> - {{ ticket.status.name }}</td>
+                    <td>
+                        {% if ticket.assigned_to %}
+                            {{ ticket.assigned_to.username }}
+                        {% else %}
+                            Unassigned
+                        {% endif %}
+                    </td> <!-- Display assigned admin -->
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

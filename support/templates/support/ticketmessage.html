@@ -1,0 +1,33 @@
+{% extends 'support/base.html' %}
+
+{% block content %}
+<h2>Title: {{ ticket.title }}</h2>
+<p>Description: {{ ticket.description }}</p>
+<p class="ticket-creator">Ticket Created by: {{ ticket.created_by }}</p>
+
+<form method="post" action="{% url 'update_ticket_status' ticket.id %}">
+    {% csrf_token %}
+    <label for="status">Change Status:</label>
+    <select name="status">
+        <option value="Open" {% if ticket.status == 'Open' %}selected{% endif %}>Open</option>
+        <option value="InProgress" {% if ticket.status == 'InProgress' %}selected{% endif %}>In Progress</option>
+        <option value="Resolved" {% if ticket.status == 'Resolved' %}selected{% endif %}>Resolved</option>
+        <option value="Closed" {% if ticket.status == 'Closed' %}selected{% endif %}>Closed</option>
+    </select>
+    <button type="submit">Update Status</button>
+</form>
+
+<h3>Messages</h3>
+<ul>
+    {% for message in ticket.messages.all %}
+    <li>{{ message.timestamp }} | Reply by: [ {{ message.sender.username }} ]: {{ message.content }}</li>
+    {% endfor %}
+</ul>
+
+<h3>Send a message</h3>
+<form method="post" action="{% url 'message_ticket_creator' ticket.id %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Send</button>
+</form>
+{% endblock %}

@@ -1,0 +1,225 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    min-height: 100vh;
+  }
+  
+  header {
+    background-color: #333;
+    color: #fff;
+    padding: 1em;
+    text-align: center;
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  nav a {
+    color: #fff;
+    margin: 0 1em;
+    text-decoration: none;
+  }
+  
+  .container {
+    display: flex;
+    flex: 2;
+  }
+  
+  .form-container {
+    width: 100%;
+    padding: 2em;
+    background: #fff;
+    border-radius: 5px;
+  }
+  
+  form input,
+  form select,
+  form textarea,
+  form button {
+    width: 100%;
+    padding: 1em;
+    margin-bottom: 1em;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #555;
+  }
+  
+  .logo {
+    width: 50%;
+    height: auto;
+    padding: 2em;
+  }
+  
+  .logo img {
+    width: 100%;
+    height: auto;
+  }
+  
+
+  header img {
+    height: 50px;
+}
+
+header input {
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 300px;
+}
+
+.dashboard-container {
+    display: flex;
+    width: 100%;
+}
+
+.sidebar {
+    width: 200px;
+    background-color: #fff;
+    border-right: 1px solid #ddd;
+}
+
+.tickets-menu {
+    padding: 1em;
+}
+
+.tickets-button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 1em;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+}
+
+.tickets-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.tickets-list li {
+    padding: 0.5em 1em;
+}
+
+.tickets-list li a {
+    text-decoration: none;
+    color: #333;
+}
+
+.main-content {
+    flex: 1;
+    padding: 2em;
+    background-color: #fff;
+}
+
+.tickets-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tickets-table th, .tickets-table td {
+    padding: 1em;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.tickets-table th {
+    background-color: #f4f4f4;
+}
+
+.ticket-detail-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 2em;
+  background-color: #fff;
+}
+
+.ticket-content {
+  background: #fff;
+  border-radius: 5px;
+  padding: 2em;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.ticket-header {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1em;
+}
+
+.ticket-header h2 {
+  margin: 0;
+  font-size: 2em;
+  color: #333;
+}
+
+.ticket-creator {
+  font-size: 1em;
+  color: #777;
+}
+
+.ticket-description {
+  margin-bottom: 2em;
+}
+
+.ticket-messages {
+  margin-bottom: 2em;
+}
+
+.ticket-messages h3 {
+  margin-bottom: 0.5em;
+  font-size: 1.5em;
+  color: #333;
+}
+
+.ticket-messages ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.ticket-messages li {
+  margin-bottom: 0.5em;
+  padding: 0.5em;
+  background: #f9f9f9;
+  border-radius: 5px;
+}
+
+.ticket-message-form h3 {
+  margin-bottom: 0.5em;
+  font-size: 1.5em;
+  color: #333;
+}
+
+.ticket-message-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.ticket-message-form button {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 1em;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.ticket-message-form button:hover {
+  background-color: #555;
+}

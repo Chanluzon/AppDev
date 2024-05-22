@@ -1,0 +1,38 @@
+{% extends 'support/base.html' %}
+{% load static %}
+{% block content %}
+<div class="dashboard-container">
+    <header>
+        <img src="{% static './img/logo.png' %}" alt="Wildcat Innovation Labs">
+        <input type="text" placeholder="Search ticket">
+    </header>
+    <div class="sidebar">
+        <div class="tickets-menu">
+            <button class="tickets-button">Tickets</button>
+            <ul class="tickets-list">
+                <li><a href="{% url 'create_ticket' %}">Create Ticket</a></li>
+                <li><a href="{% url 'assigned_to_me' %}">Ticket Response</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="main-content">
+        <table class="tickets-table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Ticket</th>
+                    <th>Assigned Admin</th> <!-- Add this header -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for ticket in tickets %}
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><a href="{% url 'message_ticket_user' ticket.id %}">{{ ticket.title }}</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

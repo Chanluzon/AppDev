@@ -1,0 +1,102 @@
+.landing-page-container {
+  width: 100%;
+  display: flex;
+  overflow: auto;
+  min-height: 100vh;
+  align-items: center;
+  flex-direction: column;
+}
+.landing-page-landing-page {
+  width: 100%;
+  height: 1080px;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  align-items: flex-start;
+  flex-shrink: 0;
+  background-color: rgba(255, 255, 255, 1);
+}
+.landing-page-rectangle1 {
+  top: 0px;
+  left: 0px;
+  width: 1920px;
+  height: 1080px;
+  position: absolute;
+}
+.landing-page-rectangle2 {
+  top: 0px;
+  left: 0px;
+  width: 1920px;
+  height: 140px;
+  position: absolute;
+}
+.landing-page-image2 {
+  top: 23px;
+  left: 74px;
+  width: 236px;
+  height: 93px;
+  position: absolute;
+}
+.landing-page-text {
+  top: 50px;
+  left: 1668px;
+  color: rgba(255, 255, 255, 1);
+  width: 72px;
+  height: auto;
+  position: absolute;
+  font-size: 40px;
+  font-style: Regular;
+  text-align: left;
+  font-family: Bebas Neue;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+.landing-page-text a:hover {
+  color: skyblue;
+}
+
+.landing-page-text2 {
+  top: 50px;
+  left: 1463px;
+  color: rgba(255, 255, 255, 1);
+  width: 123px;
+  height: auto;
+  position: absolute;
+  font-size: 40px;
+  font-style: Regular;
+  text-align: left;
+  font-family: Bebas Neue;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.landing-page-image3 {
+  top: 343px;
+  left: 192px;
+  width: 730px;
+  height: 516px;
+  position: absolute;
+  border-color: rgba(0, 0, 0, 1);
+  border-style: solid;
+  border-width: 1px;
+}
+.landing-page-text4 {
+  top: 362px;
+  left: 1214px;
+  color: rgba(255, 255, 255, 1);
+  width: 454px;
+  height: auto;
+  position: absolute;
+  font-size: 128px;
+  font-style: Regular;
+  text-align: center;
+  font-family: Bebas Neue;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}

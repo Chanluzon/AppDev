@@ -1,0 +1,45 @@
+{% extends 'support/base.html' %}
+{% load static %}
+{% block content %}
+<div class="ticket-detail-container">
+    <header>
+        <a href="{% url 'dashboard' %}">
+            <img src="{% static './img/logo.png' %}" alt="Wildcat Innovation Labs">
+        </a>
+        <input type="text" placeholder="Search ticket">
+    </header>
+    <div class="ticket-content">
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <div class="ticket-header">
+            <p class="ticket-creator">Ticket Created by: {{ ticket.created_by }}</p>
+            <h2>Title: {{ ticket.title }}</h2>
+        </div>
+        <div class="ticket-description">
+            <p>Description: {{ ticket.description }}</p>
+        </div>
+        <form method="POST">
+            {% csrf_token %}
+            <label for="agent">Assign to agent:</label>
+            <select id="agent" name="agent">
+                {% if not has_admins %}
+                    <option value="" disabled selected>No agents available</option>
+                {% else %}
+                    <option value="" disabled selected>Select an agent</option>
+                    {% for admin in admins %}
+                        <option value="{{ admin.id }}">{{ admin.username }}</option>
+                    {% endfor %}
+                {% endif %}
+            </select>
+            <button type="submit" name="assign_agent">Assign</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

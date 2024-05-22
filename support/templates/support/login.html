@@ -1,0 +1,18 @@
+{% extends 'support/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+  <div class="logo">
+    <img src="{% static './img/logo.png' %}">
+  </div>
+  <div class="form-container">
+    <h2>Login</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  </div>
+  {% endblock %}
+  

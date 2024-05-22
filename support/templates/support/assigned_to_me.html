@@ -1,0 +1,36 @@
+{% extends 'support/base.html' %}
+{% load static %}
+{% block content %}
+<div class="assigned-to-me-container">
+    <header>
+        <a href="{% url 'dashboard' %}">
+            <img src="{% static './img/logo.png' %}" alt="Wildcat Innovation Labs">
+        </a>
+        <input type="text" placeholder="Search ticket">
+    </header>
+    <div class="main-content">
+        <table class="tickets-table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Status</th> <!-- Add a new column for actions -->
+                    <th>Ticket</th>
+                    <th>Action</th> <!-- Add a new column for actions -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for ticket in assigned_to_me_tickets %}
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <th>{{ ticket.status }}</th>
+                    <td><a href="{% url 'view_ticket' ticket.id %}">{{ ticket.title }}</a></td>
+                    <td>
+                        <a href="{% url 'message_ticket_creator' ticket.id %}">💬</a> <!-- Add a link for message option -->
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

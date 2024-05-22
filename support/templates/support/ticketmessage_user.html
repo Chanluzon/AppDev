@@ -1,0 +1,21 @@
+{% extends 'support/base.html' %}
+
+{% block content %}
+<h2>Title: {{ ticket.title }}</h2>
+<p>Description: {{ ticket.description }}</p>
+<p class="ticket-creator">Ticket Created by: {{ ticket.created_by }}</p>
+
+<h3>Messages</h3>
+<ul>
+    {% for message in ticket.messages.all %}
+    <li>{{ message.timestamp }} | Reply by: [ {{ message.sender.username }} ]: {{ message.content }}</li>
+    {% endfor %}
+</ul>
+
+<h3>Send a message</h3>
+<form method="post" action="{% url 'message_ticket_user' ticket.id %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Send</button>
+</form>
+{% endblock %}
