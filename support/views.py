@@ -144,13 +144,6 @@ def assigned_to_me(request):
     return render(request, 'support/assigned_to_me.html', {'assigned_to_me_tickets': assigned_to_me_tickets})
 
 @login_required
-def assigned_to_me(request):
-    assigned_to_me_tickets = SupportTicket.objects.filter(status=)
-    return render(request, 'support/assigned_to_me.html', {'assigned_to_me_tickets': assigned_to_me_tickets})
-
-
-
-@login_required
 def update_ticket_status(request, ticket_id):
     ticket = get_object_or_404(SupportTicket, id=ticket_id)
 
