@@ -7,6 +7,10 @@ from django.contrib.auth.models import User
 from .forms import TicketForm, MessageForm, LoginForm, MessageAndStatusForm
 from django.contrib import messages
 from django.db.models import Q
+from django.urls import reverse_lazy
+from django.views.generic import DeleteView
+from django.http import JsonResponse
+
 
 def index(request):
     return render(request, 'support/index.html')
@@ -139,7 +143,10 @@ def assigned_to_me(request):
     assigned_to_me_tickets = SupportTicket.objects.filter(assigned_to=request.user)
     return render(request, 'support/assigned_to_me.html', {'assigned_to_me_tickets': assigned_to_me_tickets})
 
-
+@login_required
+def assigned_to_me(request):
+    assigned_to_me_tickets = SupportTicket.objects.filter(status=)
+    return render(request, 'support/assigned_to_me.html', {'assigned_to_me_tickets': assigned_to_me_tickets})
 
 
 
@@ -160,10 +167,14 @@ def update_ticket_status(request, ticket_id):
 
     return redirect('message_ticket_creator', ticket_id=ticket.id)
 
-def create_notification_message(ticket, status, sender):
-    message = f"Ticket '{ticket.title}' has been {status.lower()}."
-    Message.objects.create(
-        ticket=ticket,
-        sender=sender,
-        content=message
-    )
+def delete_tickets(request):
+    if request.method == 'POST':
+        ticket_ids = request.POST.getlist('ticket_id')
+        try:
+            tickets_to_delete = SupportTicket.objects.filter(id__in=ticket_ids)
+            tickets_to_delete.delete()
+            return redirect('dashboard')  # Redirect to dashboard view on success
+        except SupportTicket.DoesNotExist:
+            return JsonResponse({'success': False, 'error': 'Tickets not found'}, status=404)
+    else:
+        return JsonResponse({'success': False, 'error': 'Invalid request method'}, status=405)

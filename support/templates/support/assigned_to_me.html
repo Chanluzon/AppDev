@@ -1,36 +1,214 @@
-{% extends 'support/base.html' %}
 {% load static %}
-{% block content %}
-<div class="assigned-to-me-container">
-    <header>
-        <a href="{% url 'dashboard' %}">
-            <img src="{% static './img/logo.png' %}" alt="Wildcat Innovation Labs">
-        </a>
-        <input type="text" placeholder="Search ticket">
-    </header>
-    <div class="main-content">
-        <table class="tickets-table">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Status</th> <!-- Add a new column for actions -->
-                    <th>Ticket</th>
-                    <th>Action</th> <!-- Add a new column for actions -->
-                </tr>
-            </thead>
-            <tbody>
-                {% for ticket in assigned_to_me_tickets %}
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <th>{{ ticket.status }}</th>
-                    <td><a href="{% url 'view_ticket' ticket.id %}">{{ ticket.title }}</a></td>
-                    <td>
-                        <a href="{% url 'message_ticket_creator' ticket.id %}">💬</a> <!-- Add a link for message option -->
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+<!DOCTYPE html>
+<html lang="english">
+<head>
+  <title>Dashboard</title>
+  <meta property="og:title" content="Dashboard - exported project" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta property="twitter:card" content="summary_large_image" />
+
+  <style data-tag="reset-style-sheet">
+    html {  line-height: 1.15;}body {  margin: 0;}* {  box-sizing: border-box;  border-width: 0;  border-style: solid;}p,li,ul,pre,div,h1,h2,h3,h4,h5,h6,figure,blockquote,figcaption {  margin: 0;  padding: 0;}button {  background-color: transparent;}button,input,optgroup,select,textarea {  font-family: inherit;  font-size: 100%;  line-height: 1.15;  margin: 0;}button,select {  text-transform: none;}button,[type="button"],[type="reset"],[type="submit"] {  -webkit-appearance: button;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner {  border-style: none;  padding: 0;}button:-moz-focus,[type="button"]:-moz-focus,[type="reset"]:-moz-focus,[type="submit"]:-moz-focus {  outline: 1px dotted ButtonText;}a {  color: inherit;  text-decoration: inherit;}input {  padding: 2px 4px;}img {  display: block;}html { scroll-behavior: smooth  }
+  </style>
+  <style data-tag="default-style-sheet">
+    html {
+      font-family: Noto Sans;
+      font-size: 16px;
+    }
+
+    body {
+      font-weight: 400;
+      font-style:normal;
+      text-decoration: none;
+      text-transform: none;
+      letter-spacing: normal;
+      line-height: 1.15;
+      color: var(--dl-color-theme-neutral-dark);
+      background-color: var(--dl-color-theme-neutral-light);
+
+      fill: var(--dl-color-theme-neutral-dark);
+    }
+  </style>
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/animate.css@4.1.1/animate.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&amp;display=swap"
+    data-tag="font"
+  />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+    data-tag="font"
+  />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+    data-tag="font"
+  />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+    data-tag="font"
+  />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&amp;display=swap"
+    data-tag="font"
+  />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&amp;display=swap"
+    data-tag="font"
+  />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&amp;display=swap"
+    data-tag="font"
+  />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&amp;display=swap"
+    data-tag="font"
+  />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&amp;display=swap"
+    data-tag="font"
+  />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&amp;display=swap"
+    data-tag="font"
+  />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&amp;display=swap"
+    data-tag="font"
+  />
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/@teleporthq/teleport-custom-scripts/dist/style.css"
+  />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'support/style3.css' %}">
+  <link rel="stylesheet" href="{% static 'support/dashboard1.css' %}">
+</head>
+<body>
+<link rel="stylesheet" href="{% static 'support/style3.css' %}" />
+<div>
+  <link rel="stylesheet" href="{% static 'support/dashboard1.css' %}" />
+  <div class="dashboard-container">
+    <div class="dashboard-login-page">
+      <div class="dashboard-rectangle1">
+        <div class="dashboard-options">
+          <button
+            type="button"
+            id="openbutton"
+            name="openbutton"
+            class="dashboard-button button"
+          >
+            OPEN
+          </button>
+          <button
+            type="button"
+            id="unsassignedbutton"
+            name="unsassignedbutton"
+            class="dashboard-button1 button"
+          >
+            UNASSIGNED
+          </button>
+          <button type="button"
+          ="button" class="dashboard-button2 button">
+          PENDING
+        </button>
+        <button
+          type="button"
+          id="resolvedbutton"
+          name="resolvedbutton"
+          class="dashboard-button3 button"
+        >
+          RESOLVED
+        </button>
+        <button
+          type="button"
+          id="closedbutton"
+          name="closedbutton"
+          class="dashboard-button4 button"
+        >
+          CLOSED
+        </button>
+        <button
+          type="button"
+          id="archivedbutton"
+          name="archivedbutton"
+          class="dashboard-button5 button"
+        >
+          ARCHIVED
+        </button>
+        <button
+          type="button"
+          id="assignedtobutton"
+          name="assignedtobutton"
+          class="dashboard-button6 button"
+          onclick="location.href='{% url 'assigned_to_me' %}';"
+        >
+          ASIGNED TO ME
+        </button>
+      </div>
+      <button type="button" class="dashboard-button7 button">GO</button>
+      <input
+        type="text"
+        placeholder="Search"
+        class="dashboard-textinput input"
+      />
+      <form id="delete-tickets-form" method="POST" action="{% url 'delete_tickets' %}">
+        {% csrf_token %}
+        <ul id="tickets table" class="dashboard-ul list">
+            <table class="tickets-table scrollable-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Status</th> <!-- Add a new column for actions -->
+                        <th>Ticket</th>
+                        <th>Action</th> <!-- Add a new column for actions -->
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ticket in assigned_to_me_tickets %}
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <th>{{ ticket.status }}</th>
+                        <td><a href="{% url 'view_ticket' ticket.id %}">{{ ticket.title }}</a></td>
+                        <td>
+                            <a href="{% url 'message_ticket_creator' ticket.id %}">💬</a> <!-- Add a link for message option -->
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </ul>
+        
+      </form>
+      
+      <div class="dashboard-navigation-bar">
+        <div class="dashboard-rectangle2">
+          <a href="{% url 'logout' %}" class="dashboard-text">LOGOUT</a>
+          <img
+            src="{% static 'img/image2425-rrom-200h.png'%}"
+            alt="image2425"
+            class="dashboard-image2"
+          />
+          <span class="dashboard-text1">HOME</span>
+          <span class="dashboard-text2">TICKETING SUPPORT SYSTEM</span>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
-{% endblock %}
+</div>
+</body>
+</html>

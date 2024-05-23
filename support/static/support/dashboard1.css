@@ -134,15 +134,19 @@
   font-size: 20px;
   background-color: rgb(255, 255, 255);
 }
+
 .dashboard-delete-ticket {
-  left: 152px;
-  width: 244px;
-  bottom: 133px;
+  /* Adjust the left, bottom, and width properties to fit your layout */
+  left: 50%; /* Adjust as needed */
+  bottom: 80px; /* Adjust as needed */
+  transform: translateX(-50%); /* Center horizontally */
+  width: 200px; /* Adjust as needed */
   height: 67px;
   position: absolute;
   font-size: 20px;
   background-color: #ff5e5e;
 }
+
 .dashboard-navigation-bar {
   top: 0px;
   flex: 0 0 auto;
