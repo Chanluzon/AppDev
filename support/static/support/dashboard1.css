@@ -117,7 +117,7 @@
   border-color: var(--dl-color-theme-neutral-dark);
   border-width: 1px;
   border-radius: 15px;
-  background-color: #c1c1c1;
+  background-color: #000000;
   border-top-left-radius: 15;
   border-top-right-radius: 15;
   border-bottom-left-radius: 15;
@@ -223,10 +223,55 @@
 
 .dashboard-text:hover {
   color: skyblue;
+  transform: scale(1.1); /* Adjust scale as needed */
+  transition: transform 0.3s ease-in-out; /* Optional: add smooth transition */
+}
+
+.dashboard-text1:hover {
+  color: skyblue;
+  transform: scale(1.1); /* Adjust scale as needed */
+  transition: transform 0.3s ease-in-out; /* Optional: add smooth transition */
+}
+
+.button:hover {
+  color: skyblue;
+  transform: scale(1.1); /* Adjust scale as needed */
+  transition: transform 0.3s ease-in-out; /* Optional: add smooth transition */
 }
 
 .scrollable-table {
   overflow-y: auto;
   height: 480px; /* Adjust this value to your liking */
   display: block;
+}
+
+.tickets-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #000000;
+  color: #ffffff;
+  font-size: 0.7em;
+}
+
+.tickets-table th, .tickets-table td {
+  padding: 0px;
+  border: 1px solid #fdcc01;
+  text-align: center;
+}
+
+.tickets-table th {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.tickets-table tr:nth-child(even) {
+  background-color: #333333;
+}
+
+.tickets-table a {
+  color: #fdcc01;
+}
+
+.tickets-table a:hover {
+  color: #ffffff;
 }

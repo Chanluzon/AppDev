@@ -28,6 +28,7 @@ class SupportTeam(models.Model):
         return self.name
 
 class SupportTicket(models.Model):
+    ticket_id = models.AutoField(primary_key=True)
     LOW = 'Low'
     MEDIUM = 'Medium'
     HIGH = 'High'

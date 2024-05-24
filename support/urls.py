@@ -14,4 +14,8 @@ urlpatterns = [
     path('login/', views.user_login, name='login'),
     path('logout/', views.user_logout, name='logout'),
     path('tickets/delete/', views.delete_tickets, name='delete_tickets'),
+    path('tickets/open/', views.open_tickets, name='open_tickets'),
+    path('tickets/inprogress/', views.in_progress_tickets, name='in_progress_tickets'),
+    path('tickets/resolved/', views.resolved_tickets, name='resolved_tickets'),
+    path('tickets/closed/', views.closed_tickets, name='closed_tickets'),
 ]

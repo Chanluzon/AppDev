@@ -178,13 +178,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for ticket in assigned_to_me_tickets %}
+                    {% for ticket in tickets %}
                     <tr>
                         <td><input type="checkbox"></td>
                         <th>{{ ticket.status }}</th>
                         <td><a href="{% url 'view_ticket' ticket.ticket_id %}">{{ ticket.title }}</a></td>
                         <td>
-                          <a href="{% url 'message_ticket_creator' ticket.ticket_id %}">💬</a> <!-- Add a link for message option -->
+                            <a href="{% url 'message_ticket_creator' ticket.ticket_id %}">💬</a> <!-- Add a link for message option -->
                         </td>
                     </tr>
                     {% endfor %}
@@ -202,7 +202,7 @@
             alt="image2425"
             class="dashboard-image2"
           />
-          <a href="{% url 'dashboard' %}" class="dashboard-text1">HOME</a>
+          <span class="dashboard-text1">HOME</span>
           <span class="dashboard-text2">TICKETING SUPPORT SYSTEM</span>
         </div>
       </div>

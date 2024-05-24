@@ -35,7 +35,7 @@ def dashboard_user(request):
 
 @login_required
 def view_ticket(request, ticket_id):
-    ticket = get_object_or_404(SupportTicket, id=ticket_id)
+    ticket = get_object_or_404(SupportTicket, ticket_id=ticket_id)
     admins = User.objects.filter(is_superuser=True)
     has_admins = admins.exists()
     form = MessageForm()
@@ -48,7 +48,7 @@ def view_ticket(request, ticket_id):
                 ticket.assigned_to = agent
                 ticket.save()
                 messages.success(request, f'Ticket assigned to {agent.username}.')
-                return redirect('view_ticket', ticket_id=ticket_id)
+                return redirect('dashboard')
         else:
             form = MessageForm(request.POST)
             if form.is_valid():
@@ -105,7 +105,7 @@ def user_logout(request):
 
 @login_required
 def message_ticket_creator(request, ticket_id):
-    ticket = get_object_or_404(SupportTicket, id=ticket_id)
+    ticket = get_object_or_404(SupportTicket, ticket_id=ticket_id)
     if request.method == 'POST':
         form = MessageAndStatusForm(request.POST)
         if form.is_valid():
@@ -114,7 +114,7 @@ def message_ticket_creator(request, ticket_id):
             message.sender = request.user
             message.save()
             messages.success(request, 'Message sent successfully.')
-            return redirect('message_ticket_creator', ticket_id=ticket.id)
+            return redirect('message_ticket_creator', ticket_id=ticket_id)
     else:
         form = MessageAndStatusForm()
 
@@ -125,7 +125,7 @@ def message_ticket_creator(request, ticket_id):
 
 @login_required
 def message_ticket_user(request, ticket_id):
-    ticket = get_object_or_404(SupportTicket, id=ticket_id)
+    ticket = get_object_or_404(SupportTicket, ticket_id=ticket_id)
     if request.method == 'POST':
         form = MessageForm(request.POST)
         if form.is_valid():
@@ -145,7 +145,7 @@ def assigned_to_me(request):
 
 @login_required
 def update_ticket_status(request, ticket_id):
-    ticket = get_object_or_404(SupportTicket, id=ticket_id)
+    ticket = get_object_or_404(SupportTicket, ticket_id=ticket_id)
 
     if request.method == 'POST':
         new_status = request.POST.get('status')
@@ -155,10 +155,10 @@ def update_ticket_status(request, ticket_id):
             messages.success(request, f'Ticket has been {new_status.lower()}.')
 
             # Send notifications to both the admin and the ticket creator
-            if ticket.assigned_to:
-                create_notification_message(ticket, new_status, request.user)
+            #if ticket.assigned_to:
+                #create_notification_message(ticket, new_status, request.user)
 
-    return redirect('message_ticket_creator', ticket_id=ticket.id)
+    return redirect('message_ticket_creator', ticket_id=ticket_id)
 
 def delete_tickets(request):
     if request.method == 'POST':
@@ -171,3 +171,23 @@ def delete_tickets(request):
             return JsonResponse({'success': False, 'error': 'Tickets not found'}, status=404)
     else:
         return JsonResponse({'success': False, 'error': 'Invalid request method'}, status=405)
+
+@login_required
+def open_tickets(request):
+    open_tickets = SupportTicket.objects.filter(status='Open')
+    return render(request, 'support/open_tickets.html', {'tickets': open_tickets})
+
+@login_required
+def in_progress_tickets(request):
+    in_progress_tickets = SupportTicket.objects.filter(status='InProgress')
+    return render(request, 'support/in_progress_tickets.html', {'tickets': in_progress_tickets})
+
+@login_required
+def resolved_tickets(request):
+    resolved_tickets = SupportTicket.objects.filter(status='Resolved')
+    return render(request, 'support/resolved_tickets.html', {'tickets': resolved_tickets})
+
+@login_required
+def closed_tickets(request):
+    closed_tickets = SupportTicket.objects.filter(status='Closed')
+    return render(request, 'support/closed_tickets.html', {'tickets': closed_tickets})

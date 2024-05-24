@@ -5,7 +5,7 @@
 <p>Description: {{ ticket.description }}</p>
 <p class="ticket-creator">Ticket Created by: {{ ticket.created_by }}</p>
 
-<form method="post" action="{% url 'update_ticket_status' ticket.id %}">
+<form method="post" action="{% url 'update_ticket_status' ticket.ticket_id %}">
     {% csrf_token %}
     <label for="status">Change Status:</label>
     <select name="status">
@@ -25,7 +25,7 @@
 </ul>
 
 <h3>Send a message</h3>
-<form method="post" action="{% url 'message_ticket_creator' ticket.id %}">
+<form method="post" action="{% url 'message_ticket_creator' ticket.ticket_id %}">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Send</button>

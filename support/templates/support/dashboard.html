@@ -110,6 +110,7 @@
             id="openbutton"
             name="openbutton"
             class="dashboard-button button"
+            onclick="location.href='{% url 'open_tickets' %}';"
           >
             OPEN
           </button>
@@ -172,22 +173,26 @@
             <thead>
               <tr>
                 <th></th>
+                <th>Ticket ID</th> <!-- Add this header -->
                 <th>Ticket</th>
-                <th>Assigned Support</th> <!-- Add this header -->
+                <th>Priority</th> <!-- Add this header -->
+                <th>Assigned Support</th>
               </tr>
             </thead>
             <tbody>
               {% for ticket in tickets %}
               <tr>
-                <td><input type="checkbox" name="ticket_id" value="{{ ticket.id }}"></td>
-                <td><a href="{% url 'view_ticket' ticket.id %}">{{ ticket.title }}</a> - {{ ticket.status.name }}</td>
+                <td><input type="checkbox" name="ticket_id" value="{{ ticket.ticket_id }}"></td>
+                <td>{{ ticket.ticket_id }}</td> <!-- Display ticket ID -->
+                <td><a href=" {% url 'view_ticket' ticket.ticket_id %} ">{{ ticket.title }}</a>  {{ ticket.status.name }}</td>
+                <td>{{ ticket.get_priority_display }}</td> <!-- Display priority -->
                 <td>
                   {% if ticket.assigned_to %}
                       {{ ticket.assigned_to.username }}
                   {% else %}
                       Unassigned
                   {% endif %}
-                </td> <!-- Display assigned admin -->
+                </td>
               </tr>
               {% endfor %}
             </tbody>
@@ -214,7 +219,7 @@
             alt="image2425"
             class="dashboard-image2"
           />
-          <span class="dashboard-text1">HOME</span>
+          <a href="{% url 'dashboard' %}" class="dashboard-text1">HOME</a>
           <span class="dashboard-text2">TICKETING SUPPORT SYSTEM</span>
         </div>
       </div>
