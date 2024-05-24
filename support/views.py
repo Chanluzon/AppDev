@@ -93,7 +93,7 @@ def create_ticket(request):
             ticket = form.save(commit=False)
             ticket.created_by = request.user
             ticket.save()
-            return redirect('dashboard_user')
+            return redirect('dashboard')
     else:
         form = TicketForm()
     return render(request, 'support/create_ticket.html', {'form': form})
