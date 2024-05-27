@@ -18,4 +18,6 @@ urlpatterns = [
     path('tickets/inprogress/', views.in_progress_tickets, name='in_progress_tickets'),
     path('tickets/resolved/', views.resolved_tickets, name='resolved_tickets'),
     path('tickets/closed/', views.closed_tickets, name='closed_tickets'),
+    path('unassigned_tickets/', views.unassigned_tickets, name='unassigned_tickets'),
+    path('search_tickets/', views.search_tickets, name='search_tickets'),
 ]

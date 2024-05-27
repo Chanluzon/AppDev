@@ -164,7 +164,7 @@ def delete_tickets(request):
     if request.method == 'POST':
         ticket_ids = request.POST.getlist('ticket_id')
         try:
-            tickets_to_delete = SupportTicket.objects.filter(id__in=ticket_ids)
+            tickets_to_delete = SupportTicket.objects.filter(ticket_id__in=ticket_ids)
             tickets_to_delete.delete()
             return redirect('dashboard')  # Redirect to dashboard view on success
         except SupportTicket.DoesNotExist:
@@ -180,7 +180,7 @@ def open_tickets(request):
 @login_required
 def in_progress_tickets(request):
     in_progress_tickets = SupportTicket.objects.filter(status='InProgress')
-    return render(request, 'support/in_progress_tickets.html', {'tickets': in_progress_tickets})
+    return render(request, 'support/pending_tickets.html', {'tickets': in_progress_tickets})
 
 @login_required
 def resolved_tickets(request):
@@ -191,3 +191,16 @@ def resolved_tickets(request):
 def closed_tickets(request):
     closed_tickets = SupportTicket.objects.filter(status='Closed')
     return render(request, 'support/closed_tickets.html', {'tickets': closed_tickets})
+
+@login_required
+def unassigned_tickets(request):
+    unassigned_tickets = SupportTicket.objects.filter(assigned_to__isnull=True)
+    return render(request, 'support/unassigned_tickets.html', {'tickets': unassigned_tickets})
+
+@login_required
+def search_tickets(request):
+    query = request.GET.get('q', '')
+    tickets = SupportTicket.objects.filter(
+        Q(title__icontains=query) | Q(description__icontains=query)
+    )
+    return render(request, 'support/search_results.html', {'tickets': tickets})

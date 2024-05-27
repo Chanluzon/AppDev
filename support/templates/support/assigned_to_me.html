@@ -110,6 +110,7 @@
             id="openbutton"
             name="openbutton"
             class="dashboard-button button"
+            onclick="location.href='{% url 'open_tickets' %}';"
           >
             OPEN
           </button>
@@ -118,18 +119,21 @@
             id="unsassignedbutton"
             name="unsassignedbutton"
             class="dashboard-button1 button"
+            onclick="location.href='{% url 'unassigned_tickets' %}';"
           >
             UNASSIGNED
           </button>
-          <button type="button"
-          ="button" class="dashboard-button2 button">
-          PENDING
+            <button type="button"
+            class="dashboard-button2 button"
+            onclick="location.href='{% url 'in_progress_tickets' %}';">
+            PENDING
         </button>
         <button
           type="button"
           id="resolvedbutton"
           name="resolvedbutton"
           class="dashboard-button3 button"
+          onclick="location.href='{% url 'resolved_tickets' %}';"
         >
           RESOLVED
         </button>
@@ -138,16 +142,9 @@
           id="closedbutton"
           name="closedbutton"
           class="dashboard-button4 button"
+          onclick="location.href='{% url 'closed_tickets' %}';"
         >
           CLOSED
-        </button>
-        <button
-          type="button"
-          id="archivedbutton"
-          name="archivedbutton"
-          class="dashboard-button5 button"
-        >
-          ARCHIVED
         </button>
         <button
           type="button"
@@ -174,7 +171,7 @@
                         <th></th>
                         <th>Status</th> <!-- Add a new column for actions -->
                         <th>Ticket</th>
-                        <th>Action</th> <!-- Add a new column for actions -->
+                        <th>Action</th> 
                     </tr>
                 </thead>
                 <tbody>

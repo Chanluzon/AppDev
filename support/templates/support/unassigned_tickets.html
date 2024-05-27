@@ -105,7 +105,7 @@
     <div class="dashboard-login-page">
       <div class="dashboard-rectangle1">
         <div class="dashboard-options">
-          <button
+            <button
             type="button"
             id="openbutton"
             name="openbutton"
@@ -156,59 +156,51 @@
           ASIGNED TO ME
         </button>
       </div>
-      <form method="GET" action="{% url 'search_tickets' %}">
-        <input type="text" name="q" placeholder="Search" class="dashboard-textinput input" />
-        <button type="submit" class="dashboard-button7 button">GO</button>
-      </form>
+      <button type="button" class="dashboard-button7 button">GO</button>
+      <input
+        type="text"
+        placeholder="Search"
+        class="dashboard-textinput input"
+      />
       <form id="delete-tickets-form" method="POST" action="{% url 'delete_tickets' %}">
         {% csrf_token %}
         <ul id="tickets table" class="dashboard-ul list">
-          <table class="tickets-table scrollable-table">
-            <thead>
-              <tr>
-                <th></th>
-                <th>Ticket ID</th> <!-- Add this header -->
-                <th>Ticket</th>
-                <th>Priority</th> <!-- Add this header -->
-                <th>Assigned Support</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for ticket in tickets %}
-              <tr>
-                <td><input type="checkbox" name="ticket_id" value="{{ ticket.ticket_id }}"></td>
-                <td>{{ ticket.ticket_id }}</td> <!-- Display ticket ID -->
-                <td><a href=" {% url 'view_ticket' ticket.ticket_id %} ">{{ ticket.title }}</a>  {{ ticket.status.name }}</td>
-                <td>{{ ticket.get_priority_display }}</td> <!-- Display priority -->
-                <td>
-                  {% if ticket.assigned_to %}
-                      {{ ticket.assigned_to.username }}
-                  {% else %}
-                      Unassigned
-                  {% endif %}
-                </td>
-                <td>
-                  <a href="{% url 'message_ticket_creator' ticket.ticket_id %}">💬</a> <!-- Add a link for message option -->
-                </td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        </ul>
-        <button type="submit" class="dashboard-delete-ticket button">
-          Delete Ticket
-        </button>
+            <table class="tickets-table scrollable-table">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Ticket ID</th> <!-- Add this header -->
+                  <th>Ticket</th>
+                  <th>Priority</th> <!-- Add this header -->
+                  <th>Assigned Support</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for ticket in tickets %}
+                <tr>
+                  <td><input type="checkbox" name="ticket_id" value="{{ ticket.ticket_id }}"></td>
+                  <td>{{ ticket.ticket_id }}</td> <!-- Display ticket ID -->
+                  <td><a href=" {% url 'view_ticket' ticket.ticket_id %} ">{{ ticket.title }}</a>  {{ ticket.status.name }}</td>
+                  <td>{{ ticket.get_priority_display }}</td> <!-- Display priority -->
+                  <td>
+                    {% if ticket.assigned_to %}
+                        {{ ticket.assigned_to.username }}
+                    {% else %}
+                        Unassigned
+                    {% endif %}
+                  </td>
+                  <td>
+                    <a href="{% url 'message_ticket_creator' ticket.ticket_id %}">💬</a> <!-- Add a link for message option -->
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </ul>
+        
       </form>
-      <button
-          type="button"
-          id="createbutton"
-          name="createbutton"
-          class="dashboard-create-ticket button"
-          onclick="location.href='{% url 'create_ticket' %}';"
-      >
-          Create Ticket
-      </button>
+      
       <div class="dashboard-navigation-bar">
         <div class="dashboard-rectangle2">
           <a href="{% url 'logout' %}" class="dashboard-text">LOGOUT</a>

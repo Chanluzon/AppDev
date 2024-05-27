@@ -162,40 +162,43 @@
       </form>
       <form id="delete-tickets-form" method="POST" action="{% url 'delete_tickets' %}">
         {% csrf_token %}
+        {% block content %}
+        <h2>Search Results</h2>
         <ul id="tickets table" class="dashboard-ul list">
-          <table class="tickets-table scrollable-table">
+            <table class="tickets-table scrollable-table">
             <thead>
-              <tr>
+                <tr>
                 <th></th>
-                <th>Ticket ID</th> <!-- Add this header -->
+                <th>Ticket ID</th>
                 <th>Ticket</th>
-                <th>Priority</th> <!-- Add this header -->
+                <th>Priority</th>
                 <th>Assigned Support</th>
                 <th>Action</th>
-              </tr>
+                </tr>
             </thead>
             <tbody>
-              {% for ticket in tickets %}
-              <tr>
+                {% for ticket in tickets %}
+                <tr>
                 <td><input type="checkbox" name="ticket_id" value="{{ ticket.ticket_id }}"></td>
-                <td>{{ ticket.ticket_id }}</td> <!-- Display ticket ID -->
-                <td><a href=" {% url 'view_ticket' ticket.ticket_id %} ">{{ ticket.title }}</a>  {{ ticket.status.name }}</td>
-                <td>{{ ticket.get_priority_display }}</td> <!-- Display priority -->
+                <td>{{ ticket.ticket_id }}</td>
+                <td><a href="{% url 'view_ticket' ticket.ticket_id %}">{{ ticket.title }}</a>  {{ ticket.status.name }}</td>
+                <td>{{ ticket.get_priority_display }}</td>
                 <td>
-                  {% if ticket.assigned_to %}
-                      {{ ticket.assigned_to.username }}
-                  {% else %}
-                      Unassigned
-                  {% endif %}
+                    {% if ticket.assigned_to %}
+                        {{ ticket.assigned_to.username }}
+                    {% else %}
+                        Unassigned
+                    {% endif %}
                 </td>
                 <td>
-                  <a href="{% url 'message_ticket_creator' ticket.ticket_id %}">💬</a> <!-- Add a link for message option -->
+                    <a href="{% url 'message_ticket_creator' ticket.ticket_id %}">💬</a>
                 </td>
-              </tr>
-              {% endfor %}
+                </tr>
+                {% endfor %}
             </tbody>
-          </table>
+            </table>
         </ul>
+        {% endblock %}
         <button type="submit" class="dashboard-delete-ticket button">
           Delete Ticket
         </button>
