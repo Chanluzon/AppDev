@@ -1,45 +1,183 @@
-{% extends 'support/base.html' %}
 {% load static %}
-{% block content %}
-<div class="ticket-detail-container">
-    <header>
-        <a href="{% url 'dashboard' %}">
-            <img src="{% static './img/logo.png' %}" alt="Wildcat Innovation Labs">
-        </a>
-        <input type="text" placeholder="Search ticket">
-    </header>
-    <div class="ticket-content">
-        {% if messages %}
-            <div class="messages">
-                {% for message in messages %}
-                    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
-                        {{ message }}
+<!DOCTYPE html>
+<html lang="english">
+<head>
+  <title>Dashboard</title>
+  <meta property="og:title" content="Dashboard - exported project" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta property="twitter:card" content="summary_large_image" />
+
+  <style data-tag="reset-style-sheet">
+    html {  line-height: 1.15;}body {  margin: 0;}* {  box-sizing: border-box;  border-width: 0;  border-style: solid;}p,li,ul,pre,div,h1,h2,h3,h4,h5,h6,figure,blockquote,figcaption {  margin: 0;  padding: 0;}button {  background-color: transparent;}button,input,optgroup,select,textarea {  font-family: inherit;  font-size: 100%;  line-height: 1.15;  margin: 0;}button,select {  text-transform: none;}button,[type="button"],[type="reset"],[type="submit"] {  -webkit-appearance: button;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner {  border-style: none;  padding: 0;}button:-moz-focus,[type="button"]:-moz-focus,[type="reset"]:-moz-focus,[type="submit"]:-moz-focus {  outline: 1px dotted ButtonText;}a {  color: inherit;  text-decoration: inherit;}input {  padding: 2px 4px;}img {  display: block;}html { scroll-behavior: smooth  }
+  </style>
+  <style data-tag="default-style-sheet">
+    body, p, h1, h2, h3, h4, h5, h6, li {
+      font-size: 25px;
+      color: white; /* Adjusts the font color to white */
+    }
+    html {
+      font-family: Noto Sans;
+      font-size: 16px;
+    }
+
+    body {
+      font-weight: 400;
+      font-style:normal;
+      text-decoration: none;
+      text-transform: none;
+      letter-spacing: normal;
+      line-height: 1.15;
+      color: var(--dl-color-theme-neutral-dark);
+      background-color: var(--dl-color-theme-neutral-light);
+
+      fill: var(--dl-color-theme-neutral-dark);
+    }
+
+    ul.messages {
+      max-height: 300px; /* Adjust the height as needed */
+      overflow-y: auto; /* Enable vertical scrollbar when content exceeds max-height */
+      padding: 0 10px; /* Add padding to prevent horizontal scrollbar */
+      margin-bottom: 20px; /* Add space at the bottom to accommodate the form */
+    }
+  </style>
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/animate.css@4.1.1/animate.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&amp;display=swap"
+    data-tag="font"
+  />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+    data-tag="font"
+  />
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/@teleporthq/teleport-custom-scripts/dist/style.css"
+  />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'support/style3.css' %}">
+  <link rel="stylesheet" href="{% static 'support/dashboard1.css' %}">
+</head>
+<body>
+<link rel="stylesheet" href="{% static 'support/style3.css' %}" />
+<div>
+  <link rel="stylesheet" href="{% static 'support/dashboard1.css' %}" />
+  <div class="dashboard-container">
+    <div class="dashboard-login-page">
+      <div class="dashboard-rectangle1">
+        <div class="dashboard-options">
+          <button
+            type="button"
+            id="openbutton"
+            name="openbutton"
+            class="dashboard-button button"
+            onclick="location.href='{% url 'open_tickets' %}';"
+          >
+            OPEN
+          </button>
+          <button
+            type="button"
+            id="unsassignedbutton"
+            name="unsassignedbutton"
+            class="dashboard-button1 button"
+            onclick="location.href='{% url 'unassigned_tickets' %}';"
+          >
+            UNASSIGNED
+          </button>
+            <button type="button"
+            class="dashboard-button2 button"
+            onclick="location.href='{% url 'in_progress_tickets' %}';">
+            PENDING
+        </button>
+        <button
+          type="button"
+          id="resolvedbutton"
+          name="resolvedbutton"
+          class="dashboard-button3 button"
+          onclick="location.href='{% url 'resolved_tickets' %}';"
+        >
+          RESOLVED
+        </button>
+        <button
+          type="button"
+          id="closedbutton"
+          name="closedbutton"
+          class="dashboard-button4 button"
+          onclick="location.href='{% url 'closed_tickets' %}';"
+        >
+          CLOSED
+        </button>
+        <button
+          type="button"
+          id="assignedtobutton"
+          name="assignedtobutton"
+          class="dashboard-button6 button"
+          onclick="location.href='{% url 'assigned_to_me' %}';"
+        >
+          ASIGNED TO ME
+        </button>
+      </div>
+        {% csrf_token %}
+        <ul id="tickets-table" class="dashboard-ul list">
+            <thead>
+
+                <div class="ticket-content">
+                    {% if messages %}
+                        <div class="messages">
+                            {% for message in messages %}
+                                <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    <div class="ticket-header">
+                        <p class="ticket-creator">Ticket Created by: {{ ticket.created_by }}</p>
+                        <h2>Title: {{ ticket.title }}</h2>
                     </div>
-                {% endfor %}
-            </div>
-        {% endif %}
-        <div class="ticket-header">
-            <p class="ticket-creator">Ticket Created by: {{ ticket.created_by }}</p>
-            <h2>Title: {{ ticket.title }}</h2>
+                    <div class="ticket-description">
+                        <p>Description: {{ ticket.description }}</p>
+                    </div>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <label for="agent" style="color: rgb(255, 255, 255);">Assign to agent:</label>
+                        <select id="agent" name="agent">
+                            {% if not has_admins %}
+                                <option value="" disabled selected>No agents available</option>
+                            {% else %}
+                                <option value="" disabled selected>Select an agent</option>
+                                {% for admin in admins %}
+                                    <option value="{{ admin.id }}">{{ admin.username }}</option>
+                                {% endfor %}
+                            {% endif %}
+                        </select>
+                        <button type="submit" name="assign_agent" style="color: rgb(255, 255, 255);">Assign</button>
+                    </form>
+                </div>
+
+            </tbody>
+        </ul>
+      </form>
+      <div class="dashboard-navigation-bar">
+        <div class="dashboard-rectangle2">
+          <a href="{% url 'logout' %}" class="dashboard-text">LOGOUT</a>
+          <img
+            src="{% static 'img/image2425-rrom-200h.png'%}"
+            alt="image2425"
+            class="dashboard-image2"/>
+          <a href="{% url 'dashboard' %}" class="dashboard-text1">HOME</a>
+          <span class="dashboard-text2">TICKETING SUPPORT SYSTEM</span>
         </div>
-        <div class="ticket-description">
-            <p>Description: {{ ticket.description }}</p>
-        </div>
-        <form method="POST">
-            {% csrf_token %}
-            <label for="agent">Assign to agent:</label>
-            <select id="agent" name="agent">
-                {% if not has_admins %}
-                    <option value="" disabled selected>No agents available</option>
-                {% else %}
-                    <option value="" disabled selected>Select an agent</option>
-                    {% for admin in admins %}
-                        <option value="{{ admin.id }}">{{ admin.username }}</option>
-                    {% endfor %}
-                {% endif %}
-            </select>
-            <button type="submit" name="assign_agent">Assign</button>
-        </form>
+      </div>
     </div>
+  </div>
 </div>
-{% endblock %}
+</div>
+</script>
+</body>
+</html>
