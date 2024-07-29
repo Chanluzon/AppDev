@@ -144,7 +144,7 @@
 @media (max-width: 768px) {
   .landing-page-text,
   .landing-page-text2 {
-    font-size: 20px;
+    font-size: 10px;
     width: 10px;
     right: 10px;
     margin-right: 5px; 
@@ -166,7 +166,7 @@
   }
 
   .landing-page-image3 {
-    width: 100%;
+    width: 50%;
     margin-right: 0;
     margin-bottom: 30px;
   }
