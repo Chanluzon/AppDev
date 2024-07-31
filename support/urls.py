@@ -3,6 +3,7 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('register/', views.register, name='register'),
     path('dashboard/', views.dashboard, name='dashboard'),
     path('dashboard_user/', views.dashboard_user, name='dashboard_user'),
     path('ticket/<int:ticket_id>/', views.view_ticket, name='view_ticket'),
@@ -20,4 +21,5 @@ urlpatterns = [
     path('tickets/closed/', views.closed_tickets, name='closed_tickets'),
     path('unassigned_tickets/', views.unassigned_tickets, name='unassigned_tickets'),
     path('search_tickets/', views.search_tickets, name='search_tickets'),
+    
 ]

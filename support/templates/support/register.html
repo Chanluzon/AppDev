@@ -102,7 +102,7 @@
           />
           <div class="login-page-rectangle11">
             
-            <form method="POST" action="{% url 'login' %}">
+            <form method="POST" action="{% url 'register' %}">
               {% csrf_token %}
               <!-- Your input fields for username and password go here -->
               <textarea
@@ -118,14 +118,14 @@
                 class="login-page-passwordtextarea1 textarea"
               ></textarea>
               <button type="submit" class="login-page-button button">
-                <span class="login-page-text">
-                  <span>LOGIN</span>
+                <span class="register-page-text">
+                  <span>REGISTER</span>
                   <br />
                   <br />
                 </span>
               </button>
               <div class="register-link">
-                <a href="{% url 'register' %}" class="register-page-link">Don't have an account? Register here</a>
+                <a href="{% url 'login' %}" class="register-page-link">Already have an account? Login here</a>
               </div>
             </form>
           </div>
@@ -144,7 +144,7 @@
           <span class="login-page-text08">
             <span>TICKETING SUPPORT SYSTEM</span>
           </span>
-          <span class="login-page-text10"><span>LOGIN</span></span>
+          <span class="login-page-text10"><span>REGISTER</span></span>
           <span class="login-page-text12"><span>PASSWORD</span></span>
           <span class="login-page-text14"><span>USERNAME</span></span>
         </div>

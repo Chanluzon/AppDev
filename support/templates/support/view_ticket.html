@@ -7,7 +7,180 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta charset="utf-8" />
   <meta property="twitter:card" content="summary_large_image" />
-
+  <style>
+    <style>
+    /* General Styles */
+    body {
+      font-family: 'Noto Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      color: #333;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+      
+    /* Container Styles */
+    .dashboard-container {
+      max-width: 1920px;
+      margin: 0 auto;
+    }
+  
+    /* Dashboard Rectangle Styles */
+    .dashboard-rectangle1, .dashboard-rectangle2 {
+      background-color: #000000;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
+  
+    /* Message Box Styles */
+    ul.messages {
+      max-height: 300px; /* Fixed height for the message box */
+      overflow-y: auto; /* Enable vertical scrolling */
+      padding: 10px;
+      margin-bottom: 20px;
+      background-color: #000000;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+  
+    ul.messages li {
+      margin-bottom: 10px;
+      padding: 10px;
+      border-bottom: 1px solid #ffffff;
+    }
+  
+    ul.messages li:last-child {
+      border-bottom: none;
+    }
+  
+    /* Form Styles */
+    form {
+      background-color: #000000;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
+  
+    form label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #ffffff;
+    }
+  
+    form select, form input[type="text"], form input[type="password"], form textarea {
+      width: calc(100% - 20px);
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+    }
+  
+    form button {
+      background-color: #fdcc01;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+  
+    form button:hover {
+      background-color: #ddb203;
+    }
+  
+    /* Headings and Text */
+    h2, h3 {
+      color: #333;
+    }
+  
+    p {
+      color: #666;
+    }
+  
+    .ticket-creator {
+      font-style: italic;
+    }
+  
+    /* Ticket Table Styles */
+    #tickets-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+  
+    #tickets-table h2, #tickets-table h3 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      color: #333;
+      margin: 0 0 10px;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+  
+    #tickets-table p {
+      font-family: 'Noto Sans', sans-serif;
+      font-weight: 400;
+      color: #666;
+      margin: 0 0 10px;
+      line-height: 1.6;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+  
+    #tickets-table form {
+      margin-top: 20px;
+    }
+  
+    #tickets-table form select, #tickets-table form input[type="text"], #tickets-table form input[type="password"], #tickets-table form textarea {
+      font-family: 'Noto Sans', sans-serif;
+      font-weight: 400;
+    }
+  
+    #tickets-table form button {
+      background-color: #fdcc01;
+      color: #ffffff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+  
+    #tickets-table form button:hover {
+      background-color: #d3aa06;
+      transform: scale(1.05);
+    }
+  
+    #message-list li {
+      font-family: 'Noto Sans', sans-serif;
+      font-weight: 400;
+      color: #ffffff;
+      line-height: 1.6;
+      padding: 8px;
+      border-bottom: 1px solid #eee;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+  
+    #message-list li:last-child {
+      border-bottom: none;
+    }
+  
+    /* General Font Settings */
+    body, p, h1, h2, h3, h4, h5, h6, li {
+      font-family: 'Noto Sans', sans-serif;
+      font-weight: 400;
+      color: #ffffff;
+    }
+  </style>
+  </style>
   <style data-tag="reset-style-sheet">
     html {  line-height: 1.15;}body {  margin: 0;}* {  box-sizing: border-box;  border-width: 0;  border-style: solid;}p,li,ul,pre,div,h1,h2,h3,h4,h5,h6,figure,blockquote,figcaption {  margin: 0;  padding: 0;}button {  background-color: transparent;}button,input,optgroup,select,textarea {  font-family: inherit;  font-size: 100%;  line-height: 1.15;  margin: 0;}button,select {  text-transform: none;}button,[type="button"],[type="reset"],[type="submit"] {  -webkit-appearance: button;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner {  border-style: none;  padding: 0;}button:-moz-focus,[type="button"]:-moz-focus,[type="reset"]:-moz-focus,[type="submit"]:-moz-focus {  outline: 1px dotted ButtonText;}a {  color: inherit;  text-decoration: inherit;}input {  padding: 2px 4px;}img {  display: block;}html { scroll-behavior: smooth  }
   </style>
@@ -70,60 +243,8 @@
   <div class="dashboard-container">
     <div class="dashboard-login-page">
       <div class="dashboard-rectangle1">
-        <div class="dashboard-options">
-          <button
-            type="button"
-            id="openbutton"
-            name="openbutton"
-            class="dashboard-button button"
-            onclick="location.href='{% url 'open_tickets' %}';"
-          >
-            OPEN
-          </button>
-          <button
-            type="button"
-            id="unsassignedbutton"
-            name="unsassignedbutton"
-            class="dashboard-button1 button"
-            onclick="location.href='{% url 'unassigned_tickets' %}';"
-          >
-            UNASSIGNED
-          </button>
-            <button type="button"
-            class="dashboard-button2 button"
-            onclick="location.href='{% url 'in_progress_tickets' %}';">
-            PENDING
-        </button>
-        <button
-          type="button"
-          id="resolvedbutton"
-          name="resolvedbutton"
-          class="dashboard-button3 button"
-          onclick="location.href='{% url 'resolved_tickets' %}';"
-        >
-          RESOLVED
-        </button>
-        <button
-          type="button"
-          id="closedbutton"
-          name="closedbutton"
-          class="dashboard-button4 button"
-          onclick="location.href='{% url 'closed_tickets' %}';"
-        >
-          CLOSED
-        </button>
-        <button
-          type="button"
-          id="assignedtobutton"
-          name="assignedtobutton"
-          class="dashboard-button6 button"
-          onclick="location.href='{% url 'assigned_to_me' %}';"
-        >
-          ASIGNED TO ME
-        </button>
-      </div>
         {% csrf_token %}
-        <ul id="tickets-table" class="dashboard-ul list">
+        <ul id="tickets-table">
             <thead>
 
                 <div class="ticket-content">
@@ -143,20 +264,18 @@
                     <div class="ticket-description">
                         <p>Description: {{ ticket.description }}</p>
                     </div>
-                    <form method="POST">
-                        {% csrf_token %}
-                        <label for="agent" style="color: rgb(255, 255, 255);">Assign to agent:</label>
-                        <select id="agent" name="agent">
-                            {% if not has_admins %}
-                                <option value="" disabled selected>No agents available</option>
-                            {% else %}
-                                <option value="" disabled selected>Select an agent</option>
-                                {% for admin in admins %}
-                                    <option value="{{ admin.id }}">{{ admin.username }}</option>
-                                {% endfor %}
-                            {% endif %}
+                    <form method="post">
+                      {% csrf_token %}
+                      {% if has_users %}
+                        <label for="agent">Assign to agent:</label>
+                        <select name="agent" id="agent">
+                          <option value="">Select an agent</option>
+                          {% for user in users %}
+                            <option value="{{ user.id }}">{{ user.username }}</option>
+                          {% endfor %}
                         </select>
-                        <button type="submit" name="assign_agent" style="color: rgb(255, 255, 255);">Assign</button>
+                      {% endif %}
+                      <button type="submit" name="assign_agent">Assign Agent</button>
                     </form>
                 </div>
 

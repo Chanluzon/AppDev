@@ -75,6 +75,17 @@
   position: absolute;
   border-radius: 15px;
 }
+
+
+.register-page-button {
+  top: 735px;
+  left: 1364px;
+  width: 132px;
+  height: 46px;
+  position: absolute;
+  border-radius: 15px;
+}
+
 .login-page-text {
   top: 0px;
   left: 32px;
@@ -83,6 +94,16 @@
   font-family: "Bebas Neue";
   text-transform: uppercase;
 }
+
+.register-page-text {
+  top: 0px;
+  left: 20px;
+  position: absolute;
+  font-size: 35px;
+  font-family: "Bebas Neue";
+  text-transform: uppercase;
+}
+
 .login-page-rectangle2 {
   top: 0px;
   left: 0px;
@@ -192,4 +213,16 @@
   line-height: normal;
   font-stretch: normal;
   text-decoration: none;
+}
+
+.register-link {
+  margin-top: 300px;
+  text-align: left;
+  margin-left: 700px;
+}
+
+.register-page-link {
+  color: #000;
+  text-decoration: underline;
+  font-size: 14px;
 }
